@@ -76,169 +76,148 @@
                         </select>
                     </div>
                 </div>
-				
-            <tr class="form-group">
-                <label>Nama</label>
                 
-                <select name="nama" id="name" class="form-control" onchange="myFunction(this)">
-            		<option value="" disabled selected>--PILIH DATA--</option>
-            		<?php foreach($user as $row): ?>
-            		<option  value="<?php echo $row['nama_depan'];?>  <?php echo $row['nama_belakang'];?>"><?php echo $row['nama_depan'];?>  <?php echo $row['nama_belakang'];?></option>
-            		<?php endforeach;?>
-            	</select>
-            	
-            </tr>
-        		
-            
-            <tr class="form-group col-md-6">
-                <label>Email</label>
-                 <select name="email" id="email" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            		
-            	</select>
-            </tr>
-             <tr class="form-group">
-                <label>Customers</label>
-                <select name="role_id" id="" class="form-control col-xs-4">
-                <option value="">--PILIH DATA--</option>
-                <?php 
-                $no=1;
-                foreach ($role as $row) : ?>
-                    <option value="<?php echo $row['role_id'];?>"><?php echo $row['role_id']; ?>. <?php echo $row['nama']; ?></option>
-                <?php endforeach; ?>
-                </select>
-            </tr>
-            <tr class="form-group">
-            	<label for="">Shiping Line</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="" >Processing Office</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="" >Export</label>
-            	<select name="" id="" class="form-control">
-            		<option value="" >--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="">Booking No</label>
-            	<input type="text" class="form-control">
-            </tr>
+                <br/>
 
-            <tr class="form-group">
-            	<label for="">TOS</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="">POR</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="" >POL</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="" >POD</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="" >PDL</label>
-            	<input type="text" class="form-control">
-            </tr>
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        VESSEL
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <select>
+                            <option value="1">RACHA BUM</option>
+                            <option value="2">RACHA 2</option>
+                        </select> - <select>
+                            <option value="1">158N</option>
+                            <option value="2">200M</option>
+                        </select>
+                    </div>
+                </div>
 
-            <tr class="form-group">
-            	<label for="">Shiping Line</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
+                <br/>
 
-            </tr>
-            <tr class="form-group">
-            	<label for="">Trade</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="">FV</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">ETD POR/L</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">ETA POD</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">ETA PDL</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">CY OPEN</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">CY Close</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">Shipment Type</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="">VOL</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">Config</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="">1st Co.Ty</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
-            <tr class="form-group">
-            	<label for="">Container No.</label>
-            	<input type="text" class="form-control">
-            </tr>
-             <tr class="form-group">
-            	<label for="">Seal No.</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">Container Gate In Date</label>
-            	<input type="text" class="form-control">
-            </tr>
-            <tr class="form-group">
-            	<label for="">Depot</label>
-            	<select name="" id="" class="form-control">
-            		<option value="">--PILIH DATA--</option>
-            	</select>
-            </tr>
+                <br/>
+                
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        OPEN
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <input type="text" value="26.01.2021"> (  <input type="text" value="01.00"> )
+                    </div>
+                </div>
 
+                <br/>
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        CLOSING
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <input type="text" value="30.01.2021"> (  <input type="text" value="12.00"> )
+                    </div>
+                </div>
 
+                <br/>
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        ETD
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <input type="text" value="JAKARTA" readonly> - <input type="text" value="31.01.2021">
+                    </div>
+                </div>
 
+                <br/>
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        ETA
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <select>
+                            <option value="1">SIN</option>
+                            <option value="2">HON</option>
+                        </select> - <input type="text" value="02.02.2021">
+                    </div>
+                </div>
 
+                <br/>
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        MV
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <select>
+                            <option value="1">IAL 001</option>
+                            <option value="2">IAN 21</option>
+                        </select> - <select>
+                            <option value="1">092N</option>
+                            <option value="2">003W</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br/>
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        ETD
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <input type="text" value="SIN" readonly> - <input type="text" value="10.02.2021">
+                    </div>
+                </div>
+
+                <br/>
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        ETA
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <select>
+                            <option value="1">YANGON</option>
+                            <option value="2">JKT4</option>
+                        </select> - <input type="text" value="14.02.2021">
+                    </div>
+                </div>
+
+                <br/>
+
+                <br/>
+                <br/>
+
+                <div class="row">
+                    <div class="col-md-2 sub-title">
+                        STUFFING DATE
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <input type="text" value="29.01.2021"> (  <input type="text" value="JAYANTI 2"> )
+                    </div>
+                </div>
+                <br/>
+				<div class="row">
+                    <div class="col-md-2 sub-title">
+                        TERM
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        : <input type="text" value="CY"> /
+                            <select>
+                            <option value="1">CY</option>
+                            <option value="2">PW</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br/>
+				<div class="row">
+                    <div class="col-md-2 sub-title">
+                        TRUCKING BY
+                    </div>
+                    <div class="col-md-10 sub-title">
+                        <select>
+                            <option value="1">VENDOR1</option>
+                            <option value="2">VENDOR2</option>
+                        </select>
+                    </div>
+                </div>
             <div class="modal-footer">
         <a type="button" class="btn btn-secondary" href="<?php echo base_url('Admin/users');?>">Close</a>
         <a type="submit" class="btn btn-primary text-white">Save changes</a>
