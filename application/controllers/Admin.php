@@ -41,6 +41,43 @@ class Admin extends CI_Controller
 		$this->load->view('Admin/TambahData',$data);
 		$this->load->view('TemplateAdmin/footer');
 	}
+
+
+	public function customer()
+	{
+		$this->load->model('Customers_model');
+		$data['customer'] = $this->Customers_model->get_data();
+		$this->load->view('TemplateAdmin/header');
+		$this->load->view('TemplateAdmin/sidebarAdmin');
+		$this->load->view('Admin/Customers',$data);
+		$this->load->view('TemplateAdmin/footer');
+	}
+
+	public function tambah_customer()
+	{
+		$customer_id = $this->input->post('customer_id');
+		$name = $this->input->post('name');
+
+		$data = array(
+			'customer_id' => $customer_id,
+			'name'	=> $name,
+		);
+		$this->customers_model->input_data($data,'m_customer');
+		redirect('Admin/customer');
+	}
+
+	 function edit($id)
+	 {
+		 $where = array('id' => $id);
+		 $data['customer'] = $this->customers_model->update_data($where,'m_customer');
+		 $this->load->view('Admin/Customers',$data);
+	 }
+
+	function hapus_customer($id){
+	 $where = array('id' => $id);
+	 $this->customers_model->hapus_data($where, 'm_customer');
+	 redirect('Admin/customer');
+	 }
 }
 
 ?>

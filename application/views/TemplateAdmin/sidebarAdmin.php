@@ -35,6 +35,14 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('Admin/users'); ?>" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">User Identification IJS</span></a>
                         </li>
 
+                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Customers </span></a>
+                            <ul aria-expanded="false" class="collapse first-level">
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/customer'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">All Customers </span></a></li>
+                        </li>
+                     
+
+                       
+
                         
          
                     </ul>
