@@ -14,6 +14,7 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">Customer ID </th>
                                                 <th scope="col">Name</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -26,7 +27,7 @@
                                                <td><?php echo $row['customer_id'];?></td>
                                                 <td><?php echo $row['name'];?></td>
                                                 <td>
-                                                    <a class="btn btn-warning" data-toggle="modal" data-target="#update"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-warning"  href="<?php echo base_url('Admin/edit/'.$row['id']); ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="<?php echo base_url('Admin/hapus_customer/'.$row['id']); ?>"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
@@ -71,33 +72,3 @@
 </div>
 
 
-<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <?php foreach ($customer as $row) : ?>
-        <form action="<?php echo base_url('Admin/edit'); ?>" method="post">
-            <tr class="form-group">
-                <label>Customer ID</label>
-                <input type="text" name="customer_id" class="form-control">
-            </tr>
-            <tr class="form-group">
-                <label>Name</label>
-                <input type="text" name="name" class="form-control">
-            </tr>
-             <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-        </form>
-    <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-</div>
