@@ -13,6 +13,7 @@
     <title>Xtreme Admin Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
     <link href="<?php echo base_url() ?>asset/dist/css/style.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>asset/dist/css/tajlog.css" rel="stylesheet">
     <!-- CSS only -->
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
