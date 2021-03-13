@@ -15,7 +15,6 @@ class Users_models extends CI_Model
 		return $this->db->query('select * from tb_users INNER JOIN tb_role ON tb_users.role_id = tb_role.role_id WHERE tb_users.role_id = "" ')->result_array();
 	}
 
-	
 
 	public function get_role()
 	{

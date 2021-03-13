@@ -2,15 +2,11 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<?php foreach ($customer as $row) { ?>
-				   <form action="<?php echo base_url().'Admin/update_customer'; ?>" method="post">
+				<?php foreach ($pod as $row) { ?>
+				   <form action="<?php echo base_url().'Admin/PodUpdate'; ?>" method="post">
 				   	<tr class="form-group">
                 
                 <input type="hidden" name="id" value="<?php echo $row->id; ?>" class="form-control">
-            </tr>
-            <tr class="form-group">
-                <label>Customer ID</label>
-                <input type="text" name="customer_id" value="<?php echo $row->customer_id; ?>" class="form-control">
             </tr>
             <tr class="form-group">
                 <label>Name</label>

@@ -38,6 +38,13 @@
                          <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Master </span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item"><a href="<?php echo base_url('Admin/customer'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">Customer </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/carrier'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">Carrier </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/pol'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">POL </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/pod'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">POD </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/volume'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">VOLUME </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/vessel'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">VESSEL </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/VesselNo'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">VESSEL NO</span></a></li>
+
                         </li>
                      
 
