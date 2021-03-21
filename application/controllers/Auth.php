@@ -5,7 +5,19 @@
 	 */
 	class Auth extends CI_Controller
 	{
-		
+		 public function index() 
+		 {
+	        if ($this->session->userdata('CS')) {
+	            redirect(site_url('admin'), 'refresh');
+	        }elseif ($this->session->userdata('Document')) {
+	            redirect(site_url('Document'), 'refresh');
+	        }elseif ($this->session->userdata('Admin')) {
+	            redirect(site_url('Document'), 'refresh');
+	        }else {
+	            redirect(site_url('home/login'), 'refresh');
+	        }
+	    }
+
 		public function login()
 		{
 			$this->form_validation->set_rules('username','Username','required',['required' => 'Username harap diisi']);
@@ -27,38 +39,20 @@
 						</div>');
 					redirect('Auth/login');
 				}else {
+
+					$this->session->set_userdata('user_id', $auth->id);
+            $this->session->set_userdata('role_id', $auth->role_id);
+            $this->session->set_userdata('name', $auth->nama_depan.' '.$auth->nama_belakang);
 					$this->session->set_userdata('username',$auth->username);
-					$this->session->set_userdata('role_id',$auth->role_id);
-
-					switch ($auth->role_id) {
-						case 1 : redirect ('Admin/index');
-							# code...
-							break;
-						
-						case 2 : redirect('welcome');
-							# code...
-							break;
-						case 3 : redirect('welcome');
-							# code...
-							break;
-						case 4 : redirect('welcome');
-							# code...
-							break;
-						case 5 : redirect('welcome');
-							# code...
-							break;
-						case 6 : redirect('welcome');
-							# code...
-							break;
-						case 7 : redirect('welcome');
-							# code...
-							break;
-						case 2 : redirect('welcome');
-							# code...
-							break;
-
-						default : break;
+					// $this->session->set_userdata('role_id',$auth->role_id);
+					if ($auth->role_id == 1) {
+						$this->session->set_userdata('CS','1');
+						redirect(site_url('admin'), 'refresh');
+					}else if ($auth->role_id == 2) {
+						$this->session->set_userdata('Document','1');
+						redirect(site_url('welcome'), 'refresh');
 					}
+
 
 				}
 			}

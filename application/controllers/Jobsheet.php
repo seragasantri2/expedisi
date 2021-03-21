@@ -11,7 +11,8 @@ class Jobsheet extends CI_Controller
 		$this->load->model('users_models');
 		$data['user'] = $this->users_models->TambahData();
 		$this->load->model('users_models');
-		$data['role'] = $this->users_models->get_role();
+		$this->load->model('Customers_model');
+		$data['customer'] = $this->Customers_model->get_data();
 		$this->load->view('TemplateAdmin/header');
 		$this->load->view('TemplateAdmin/sidebarAdmin');
 		$this->load->view('Jobsheet/create',$data);

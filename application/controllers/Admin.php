@@ -5,8 +5,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Admin extends CI_Controller
 {
-	
-	public function index()
+	public function index() {
+	    if ($this->session->userdata('CS') == true) {
+	      $this->dashboard();
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+	  }
+
+	public function dashboard()
 	{
 		$this->load->model('users_models');
 		$data['user'] = $this->users_models->get_user();
@@ -228,7 +235,7 @@ class Admin extends CI_Controller
 		$data['pod'] = $this->pod->get_data();
 		$this->load->view('TemplateAdmin/header');
 		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/Pod',$data);
+		$this->load->view('Admin/pod',$data);
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
@@ -287,7 +294,7 @@ class Admin extends CI_Controller
 	 	$data['volume'] = $this->volume->get_data();
 	 	$this->load->view('TemplateAdmin/header');
 		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/Volume',$data);
+		$this->load->view('Admin/volume',$data);
 		$this->load->view('TemplateAdmin/footer');
 	 }
 

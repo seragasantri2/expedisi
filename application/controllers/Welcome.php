@@ -18,7 +18,16 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	
+	public function index() {
+	    if ($this->session->userdata('Document') == true) {
+	      $this->dashboard();
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+	  }
+
+	public function dashboard()
 	{
 		echo "<h1>Selamat Datang</h1>";
 		// $this->load->view('welcome_message');

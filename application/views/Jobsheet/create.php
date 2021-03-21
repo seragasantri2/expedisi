@@ -11,8 +11,9 @@
                     <div class="col-md-12 text-center sub-title">
                         INV NO : <input type="text" value="TAJL/2021/01/823" readonly> / 
                         <select class="js-example-basic-multiple">
-                            <option value="00073">00073</option>
-                            <option value="00074">00074</option>
+                           <?php foreach ($customer as $row) { ?>
+                            <option value="<?php echo $row['customer_id'] ?>"><?php echo $row['customer_id'] ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                 </div>

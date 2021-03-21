@@ -33,5 +33,29 @@ class Users_models extends CI_Model
 			return array();
 		}
 	}
+
+	 public function get_all_user($user_id = 0, $param = "", $partner = "") {
+        if ($user_id > 0) {
+            $this->db->where('id', $user_id);
+        }
+        //echo $param;
+        if($param == 'users'){
+            $this->db->where('role_id != ', 2)->where('role_id != ', 3)->where('role_id != ', 6);
+        } else if($param == 'students'){
+            $this->db->where('role_id', 3);
+        } else if($param == 'Partner'){
+            $this->db->where('role_id', 3)->where('partner_id', $partner);
+            $this->db->or_where('role_id', 4)->where('partner_id', $partner);
+            $this->db->or_where('role_id', 5)->where('partner_id', $partner);
+            $this->db->or_where('role_id', 6)->where('partner_id', $partner);
+        } else if($param == 'admin'){
+            $this->db->where('role_id', 1);
+            $this->db->or_where('role_id', 6);            
+        }
+        return $this->db->get('users');
+    }
+
+
+	
 }
 ?>
