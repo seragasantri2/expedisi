@@ -25,7 +25,7 @@
                                             	 
                                                <td><?php echo $no++;?></td>
                                                <td><?php echo $row['vessel_id'];?></td>
-                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['name_vesselno'];?></td>
                                                 <td>
                                                     <a class="btn btn-warning"  href="<?php echo base_url('Admin/edit_vesselno/'.$row['id']); ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="<?php echo base_url('Admin/delete_vessel_no/'.$row['id']); ?>"><i class="fa fa-trash"></i></a>
@@ -60,14 +60,14 @@
                 <?php 
                 $no=1;
                 foreach ($vessel as $row) : ?>
-                    <option value="<?php echo $row['id'];?>"><?php echo $no++; ?>. <?php echo $row['name']; ?></option>
+                    <option value="<?php echo $row['id'];?>"><?php echo $row['id']; ?>. <?php echo $row['name_vessel']; ?></option>
                      <?php endforeach; ?>
                 
                 </select>
             </tr>
             <tr class="form-group">
                 <label>Name</label>
-                <input type="text" name="name" class="form-control">
+                <input type="text" name="name_vesselno" class="form-control">
             </tr>
              <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

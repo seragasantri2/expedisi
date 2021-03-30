@@ -14,7 +14,7 @@
             </tr>
             <tr class="form-group">
                 <label>Name</label>
-                <input type="text" name="name" value="<?php echo $row->name; ?>" class="form-control">
+                <input type="text" name="name_customer" value="<?php echo $row->name_customer; ?>" class="form-control">
             </tr>
              <div class="modal-footer">
         <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>

@@ -13,8 +13,7 @@ class Admin extends CI_Controller
 	    }
 	  }
 
-	public function dashboard()
-	{
+	public function dashboard()	{
 		$this->load->model('users_models');
 		$data['user'] = $this->users_models->get_user();
 
@@ -24,8 +23,7 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	}
 
-	public function users()
-	{
+	public function users(){
 		$this->load->model('users_models');
 		$data['user'] = $this->users_models->get_user();
 		// print_r($user);
@@ -37,8 +35,7 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	}
 
-	public function TambahData()
-	{
+	public function TambahData(){
 		$this->load->model('users_models');
 		$data['user'] = $this->users_models->TambahData();
 		$this->load->model('users_models');
@@ -49,31 +46,33 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	}
 
-
-	public function customer()
-	{
-		$this->load->model('Customers_model');
+	public function customer()	{
+		if ($this->session->userdata('CS') == true) {
+	      $this->load->model('Customers_model');
 		$data['customer'] = $this->Customers_model->get_data();
 		$this->load->view('TemplateAdmin/header');
 		$this->load->view('TemplateAdmin/sidebarAdmin');
 		$this->load->view('Admin/Customers',$data);
 		$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+		
 	}
 
-	public function tambah_customer()
-	{
+	public function tambah_customer(){
 		$customer_id = $this->input->post('customer_id');
-		$name = $this->input->post('name');
+		$name_customer = $this->input->post('name_customer');
 
 		$data = array(
 			'customer_id' => $customer_id,
-			'name'	=> $name,
+			'name_customer'	=> $name_customer,
 		);
 		$this->customers_model->input_data($data,'m_customer');
 		redirect('Admin/customer');
-	}
+	} 
 
-	 public function edit($id)
+	public function edit($id)
 	 {
 		 $where = array('id' => $id);
 		 $data['customer'] = $this->customers_model->update_data($where,'m_customer')->result();
@@ -84,15 +83,15 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
-	 public function  update_customer(){
+	public function  update_customer(){
 	 	$id 		 = $this->input->post('id');
 	 	$customer_id = $this->input->post('customer_id');
-	 	$name 		 = $this->input->post('name');
+	 	$name_customer 		 = $this->input->post('name_customer');
 
 	 	$data = array(
 	 		'id'		  => $id,
 			'customer_id' => $customer_id,
-			'name'		  => $name,
+			'name_customer'		  => $name_customer,
 		);
 
 		$where = array(
@@ -103,37 +102,40 @@ class Admin extends CI_Controller
 		redirect('Admin/customer');
 	 }
 
-
 	public function hapus_customer($id){
 	 $where = array('id' => $id);
 	 $this->customers_model->hapus_data($where, 'm_customer');
 	 redirect('Admin/customer');
 	 }
 
+	public function carrier(){
+	 	if ($this->session->userdata('CS') == true) {
+	      	$this->load->model('carrier');
+			$data['carrier'] = $this->carrier->get_data();
+			$this->load->view('TemplateAdmin/header');
+			$this->load->view('TemplateAdmin/sidebarAdmin');
+			$this->load->view('Admin/Carrier',$data);
+			$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
 
-	 public function carrier()
-	 {
-	 	$this->load->model('carrier');
-		$data['carrier'] = $this->carrier->get_data();
-		$this->load->view('TemplateAdmin/header');
-		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/Carrier',$data);
-		$this->load->view('TemplateAdmin/footer');
+	 	
 	 }
 
-	 public function tambah_carrier()
+	public function tambah_carrier()
 	 {
-	 	$name = $this->input->post('name');
+	 	$name_carrier = $this->input->post('name_carrier');
 
 	 	$data = array(
-	 		'name' => $name,
-	 	);
+	 		'name_carrier' => $name_carrier,
+	 	); 
 	 	$this->load->model('carrier');
 	 	$this->carrier->input_data($data,'m_carrier');
 	 	redirect('Admin/carrier');
 	 }
 
-	 public function delete_carrier($id)
+	public function delete_carrier($id)
 	 {
 	 	$where = array( 'id' => $id);
 	 	$this->load->model('carrier');
@@ -141,7 +143,7 @@ class Admin extends CI_Controller
 	 	redirect('Admin/carrier');
 	 }
 
-	 public function edit_carrier($id)
+	public function edit_carrier($id)
 	 {
 	 	$where = array('id' => $id);
 	 	$this->load->model('carrier');
@@ -152,14 +154,14 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
-	 public function CarrierUpdate()
+	public function CarrierUpdate()
 	 {
 	 	$id = $this->input->post('id');
-	 	$name = $this->input->post('name');
+	 	$name_carrier = $this->input->post('name_carrier');
 
 	 	$data = array(
 	 		'id' => $id,
-	 		'name' => $name
+	 		'name_carrier' => $name_carrier
 	 	);
 
 	 	$where = array(
@@ -170,29 +172,35 @@ class Admin extends CI_Controller
 	 	redirect('Admin/carrier');
 	 }
 
-	 	 public function pol()
+	public function pol()
 	 {
-	 	$this->load->model('pol');
-		$data['pol'] = $this->pol->get_data();
-		$this->load->view('TemplateAdmin/header');
-		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/Pol',$data);
-		$this->load->view('TemplateAdmin/footer');
+	 	if ($this->session->userdata('CS') == true) {
+		    $this->load->model('pol');
+			$data['pol'] = $this->pol->get_data();
+			$this->load->view('TemplateAdmin/header');
+			$this->load->view('TemplateAdmin/sidebarAdmin');
+			$this->load->view('Admin/Pol',$data);
+			$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+
+	 	
 	 }
 
-	 public function tambah_pol()
+	public function tambah_pol()
 	 {
-	 	$name = $this->input->post('name');
+	 	$name_pol = $this->input->post('name_pol');
 
 	 	$data = array(
-	 		'name' => $name,
+	 		'name_pol' => $name_pol,
 	 	);
 	 	$this->load->model('pol');
 	 	$this->pol->input_data($data,'m_pol');
 	 	redirect('Admin/pol');
 	 }
 
-	 public function delete_pol($id)
+	public function delete_pol($id)
 	 {
 	 	$where = array( 'id' => $id);
 	 	$this->load->model('pol');
@@ -200,7 +208,7 @@ class Admin extends CI_Controller
 	 	redirect('Admin/pol');
 	 }
 
-	 public function edit_pol($id)
+	public function edit_pol($id)
 	 {
 	 	$where = array('id' => $id);
 	 	$this->load->model('pol');
@@ -211,14 +219,14 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
-	 public function PolUpdate()
+	public function PolUpdate()
 	 {
 	 	$id = $this->input->post('id');
-	 	$name = $this->input->post('name');
+	 	$name_pol = $this->input->post('name_pol');
 
 	 	$data = array(
 	 		'id' => $id,
-	 		'name' => $name
+	 		'name_pol' => $name_pol
 	 	);
 
 	 	$where = array(
@@ -229,22 +237,27 @@ class Admin extends CI_Controller
 	 	redirect('Admin/pol');
 	 }
 
- 	 public function pod()
+ 	public function pod()
 	 {
-	 	$this->load->model('pod');
-		$data['pod'] = $this->pod->get_data();
-		$this->load->view('TemplateAdmin/header');
-		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/pod',$data);
-		$this->load->view('TemplateAdmin/footer');
+	 	 if ($this->session->userdata('CS') == true) {
+	      	$this->load->model('pod');
+			$data['pod'] = $this->pod->get_data();
+			$this->load->view('TemplateAdmin/header');
+			$this->load->view('TemplateAdmin/sidebarAdmin');
+			$this->load->view('Admin/pod',$data);
+			$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+
 	 }
 
-	 public function tambah_pod()
+	public function tambah_pod()
 	 {
-	 	$name = $this->input->post('name');
+	 	$name_pod = $this->input->post('name_pod');
 
 	 	$data = array(
-	 		'name' => $name,
+	 		'name_pod' => $name_pod,
 	 	);
 	 	$this->load->model('pod');
 	 	$this->pod->input_data($data,'m_pod');
@@ -259,7 +272,7 @@ class Admin extends CI_Controller
 	 	redirect('Admin/pod');
 	 }
 
-	 public function edit_pod($id)
+	public function edit_pod($id)
 	 {
 	 	$where = array('id' => $id);
 	 	$this->load->model('pod');
@@ -270,14 +283,14 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
-	 public function PodUpdate()
+	public function PodUpdate()
 	 {
 	 	$id = $this->input->post('id');
-	 	$name = $this->input->post('name');
+	 	$name_pod = $this->input->post('name_pod');
 
 	 	$data = array(
 	 		'id' => $id,
-	 		'name' => $name
+	 		'name_pod' => $name_pod
 	 	);
 
 	 	$where = array(
@@ -288,22 +301,28 @@ class Admin extends CI_Controller
 	 	redirect('Admin/pod');
 	 }
 
-	 public function volume()
+	public function volume()
 	 {
-	 	$this->load->model('volume');
-	 	$data['volume'] = $this->volume->get_data();
-	 	$this->load->view('TemplateAdmin/header');
-		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/volume',$data);
-		$this->load->view('TemplateAdmin/footer');
+	 	if ($this->session->userdata('CS') == true) {
+	    	$this->load->model('volume');
+		 	$data['volume'] = $this->volume->get_data();
+		 	$this->load->view('TemplateAdmin/header');
+			$this->load->view('TemplateAdmin/sidebarAdmin');
+			$this->load->view('Admin/volume',$data);
+			$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+
+	 	
 	 }
 
-	 public function tambah_volume()
+	public function tambah_volume()
 	 {
-	 	$name = $this->input->post('name');
+	 	$name_vol = $this->input->post('name_vol');
 
 	 	$data = array(
-	 		'name' => $name
+	 		'name_vol' => $name_vol
 	 	);
 
 	 	$this->load->model('volume');
@@ -311,7 +330,7 @@ class Admin extends CI_Controller
 	 	redirect('Admin/volume');
 	 }
 
-	 public function edit_volume($id)
+	public function edit_volume($id)
 	 {
 	 	$where = array('id' => $id);
 	 	$this->load->model('volume');
@@ -322,14 +341,14 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
-	 public function VolumeUpdate()
+	public function VolumeUpdate()
 	 {
 	 	$id = $this->input->post('id');
-	 	$name = $this->input->post('name');
+	 	$name_vol = $this->input->post('name_vol');
 
 	 	$data = array(
 	 		'id' => $id,
-	 		'name' => $name
+	 		'name_vol' => $name_vol
 	 	);
 
 	 	$where = array(
@@ -340,9 +359,8 @@ class Admin extends CI_Controller
 	 	$this->volume->perbarui_data($where,$data,'m_volume');
 	 	redirect('Admin/volume');
 	 }
-
 	 
-		public function delete_volume($id)
+	public function delete_volume($id)
 	 {
 	 	$where = array( 'id' => $id);
 	 	$this->load->model('volume');
@@ -350,29 +368,34 @@ class Admin extends CI_Controller
 	 	redirect('Admin/volume');
 	 }
 
-	 public function vessel()
+	public function vessel()
 	 {
-	 	$this->load->model('vessel');
-		$data['vessel'] = $this->vessel->get_data();
-		$this->load->view('TemplateAdmin/header');
-		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/Vessel',$data);
-		$this->load->view('TemplateAdmin/footer');
+	 	if ($this->session->userdata('CS') == true) {
+		    $this->load->model('vessel');
+			$data['vessel'] = $this->vessel->get_data();
+			$this->load->view('TemplateAdmin/header');
+			$this->load->view('TemplateAdmin/sidebarAdmin');
+			$this->load->view('Admin/Vessel',$data);
+			$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+	 	
 	 }
 
-	 public function tambah_vessel()
+	public function tambah_vessel()
 	 {
-	 	$name = $this->input->post('name');
+	 	$name_vessel = $this->input->post('name_vessel');
 
 	 	$data = array(
-	 		'name' => $name,
+	 		'name_vessel' => $name_vessel,
 	 	);
 	 	$this->load->model('vessel');
 	 	$this->vessel->input_data($data,'m_vessel');
 	 	redirect('Admin/vessel');
 	 }
 
-	 public function delete_vessel($id)
+	public function delete_vessel($id)
 	 {
 	 	$where = array( 'id' => $id);
 	 	$this->load->model('vessel');
@@ -380,7 +403,7 @@ class Admin extends CI_Controller
 	 	redirect('Admin/vessel');
 	 }
 
-	 public function edit_vessel($id)
+	public function edit_vessel($id)
 	 {
 	 	$where = array('id' => $id);
 	 	$this->load->model('vessel');
@@ -391,14 +414,14 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
-	 public function vesselUpdate()
+	public function vesselUpdate()
 	 {
 	 	$id = $this->input->post('id');
-	 	$name = $this->input->post('name');
+	 	$name_vessel = $this->input->post('name_vessel');
 
 	 	$data = array(
 	 		'id' => $id,
-	 		'name' => $name
+	 		'name_vessel' => $name_vessel
 	 	);
 
 	 	$where = array(
@@ -409,25 +432,31 @@ class Admin extends CI_Controller
 	 	redirect('Admin/vessel');
 	 }
 
-	 public function VesselNo()
+	public function VesselNo()
 	 {
-	 	$this->load->model('vesselno');
-	 	$data['vesselno'] = $this->vesselno->get_data();
-	 	$data['vessel'] = $this->vesselno->get_id();
-	 	$this->load->view('TemplateAdmin/header');
-		$this->load->view('TemplateAdmin/sidebarAdmin');
-		$this->load->view('Admin/VesselNo',$data);
-		$this->load->view('TemplateAdmin/footer');
+	 	if ($this->session->userdata('CS') == true) {
+		    $this->load->model('vesselno');
+		 	$data['vesselno'] = $this->vesselno->get_data();
+		 	$data['vessel'] = $this->vesselno->get_id();
+		 	$this->load->view('TemplateAdmin/header');
+			$this->load->view('TemplateAdmin/sidebarAdmin');
+			$this->load->view('Admin/VesselNo',$data);
+			$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+
+	 	
 	 }
 
-	 public function tambah_vesselno()
+	public function tambah_vesselno()
 	 {
 	 	$vessel_id = $this->input->post('vessel_id');
-	 	$name = $this->input->post('name');
+	 	$name_vesselno = $this->input->post('name_vesselno');
 
 	 	$data = array(
 	 		'vessel_id' => $vessel_id,
-	 		'name' => $name
+	 		'name_vesselno' => $name_vesselno
 	 	);
 
 	 	$this->load->model('vesselno');
@@ -435,7 +464,7 @@ class Admin extends CI_Controller
 	 	redirect('Admin/VesselNo');
 	 }
 
-	 public function edit_vesselno($id)
+	public function edit_vesselno($id)
 	 {
 	 	$where = array('id' => $id);
 	 	$this->load->model('vesselno');
@@ -447,16 +476,16 @@ class Admin extends CI_Controller
 		$this->load->view('TemplateAdmin/footer');
 	 }
 
-	 public function VesselNoUpdate()
+	public function VesselNoUpdate()
 	 {
 	 	$id = $this->input->post('id');
 	 	$vessel_id = $this->input->post('vessel_id');
-	 	$name = $this->input->post('name');
+	 	$name_vesselno = $this->input->post('name_vesselno');
 
 	 	$data = array(
 	 		'id' => $id,
 	 		'vessel_id' => $vessel_id,
-	 		'name' => $name
+	 		'name_vesselno' => $name_vesselno
 	 	);
 
 	 	$where = array(
@@ -467,8 +496,7 @@ class Admin extends CI_Controller
 	 	redirect('Admin/VesselNo');
 	 }
 
-	 
-		public function delete_vessel_no($id)
+	public function delete_vessel_no($id)
 	 {
 	 	$where = array( 'id' => $id);
 	 	$this->load->model('vesselno');
@@ -476,7 +504,69 @@ class Admin extends CI_Controller
 	 	redirect('Admin/VesselNo');
 	 }
 
+	public function Term()
+	 {
+	 	if ($this->session->userdata('CS') == true) {
+		    $this->load->model('term');
+			$data['term'] = $this->term->get_data();
+			$this->load->view('TemplateAdmin/header');
+			$this->load->view('TemplateAdmin/sidebarAdmin');
+			$this->load->view('Admin/Term',$data);
+			$this->load->view('TemplateAdmin/footer');
+	    }else {
+	      redirect(site_url('auth/login'), 'refresh');
+	    }
+	 	
+	 }
 
+	public function tambah_term()
+	 {
+	 	$name_term = $this->input->post('name_term');
+
+	 	$data = array(
+	 		'name_term' => $name_term,
+	 	);
+	 	$this->load->model('term');
+	 	$this->term->input_data($data,'m_term');
+	 	redirect('Admin/Term');
+	 }
+
+	public function delete_term($id)
+	 {
+	 	$where = array( 'id' => $id);
+	 	$this->load->model('term');
+	 	$this->term->hapus_data($where, 'm_term');
+	 	redirect('Admin/Term');
+	 }
+
+	public function edit_term($id)
+	 {
+	 	$where = array('id' => $id);
+	 	$this->load->model('term');
+	 	$data['term'] = $this->term->update_data($where,'m_term')->result();
+		$this->load->view('TemplateAdmin/header');
+		$this->load->view('TemplateAdmin/sidebarAdmin');
+		$this->load->view('Admin/TermEdit',$data);
+		$this->load->view('TemplateAdmin/footer');
+	 }
+
+	public function termUpdate()
+	 {
+	 	$id = $this->input->post('id');
+	 	$name_term = $this->input->post('name_term');
+
+	 	$data = array(
+	 		'id' => $id,
+	 		'name_term' => $name_term
+	 	);
+
+	 	$where = array(
+	 		'id' => $id
+	 	); 
+	 	$this->load->model('term');
+	 	$this->term->perbarui_data($where, $data, 'm_term');
+	 	redirect('Admin/Term');
+	 }
 }
 
 ?>

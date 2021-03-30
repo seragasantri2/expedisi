@@ -5,12 +5,22 @@
 			<div class="card-body">
 			<h2 class="text-center">JOB SHEET #</h2>
 			<hr>
-			<form action="<?php echo base_url('Jobsheet/tambah_jobsheet');?>" method="post">
+            <?php foreach ($jobsheet as $row) { ?>
+                            
+			<form action="<?php echo base_url('Jobsheet/JobsheetUpdate');?>" method="post">
+                <div class="row">
+                    <div class="col-md-12 text-center sub-title">
+                       <input type="hidden" name="id" value="<?php echo $row->id; ?>" class="form-control">
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-md-12 text-center sub-title">
                         INV NO : <input type="text" value="TAJL/2021/01/823" readonly> / 
                         <select class="js-example-basic-multiple" name="customer_no">
+                            <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->customer_no; ?>"><?php echo $row->customer_no; ?></option>
+                            <?php } ?>
                            <?php foreach ($customer as $row) { ?>
                             <option value="<?php echo $row['customer_id'] ?>"><?php echo $row['customer_id'] ?></option>
                         <?php } ?>
@@ -40,6 +50,9 @@
                     </div>
                     <div class="col-md-10 sub-title">
                         : <select name="carrier_id">
+                             <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->carrier_id; ?>"><?php echo $row->carrier_id; ?></option>
+                            <?php } ?>
                             <?php foreach ($carrier as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_carrier'] ?></option>
                         <?php } ?>
@@ -56,10 +69,16 @@
                     </div>
                     <div class="col-md-10 sub-title">
                         : <select name="pol">
+                            <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->pol; ?>"><?php echo $row->pol; ?></option>
+                            <?php } ?>
                            <?php foreach ($pol as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_pol'] ?></option>
-                        <?php } ?>
+                            <?php } ?>
                         </select> - <select name="pod">
+                              <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->pod; ?>"><?php echo $row->pod; ?></option>
+                            <?php } ?>
                             <?php foreach ($pod as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_pod'] ?></option>
                         <?php } ?>
@@ -75,6 +94,9 @@
                     </div>
                     <div class="col-md-10 sub-title">
                         : <input type="text" value="1"> - <select name="vol_weight">
+                             <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->vol_weight; ?>"><?php echo $row->vol_weight; ?></option>
+                            <?php } ?>
                             <?php foreach ($vol as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_vol'] ?></option>
                         <?php } ?>
@@ -90,6 +112,9 @@
                     </div>
                     <div class="col-md-10 sub-title">
                         : <select name="vessel">
+                            <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->vessel; ?>"><?php echo $row->vessel; ?></option>
+                            <?php } ?>
                            <?php foreach ($vessel as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_vessel'] ?></option>
                         <?php } ?>
@@ -141,6 +166,9 @@
                     </div>
                     <div class="col-md-10 sub-title">
                         : <select name="eta_city">
+                            <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->eta_city; ?>"><?php echo $row->eta_city; ?></option>
+                            <?php } ?>
                             <?php foreach ($pod as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_pod'] ?></option>
                         <?php } ?>
@@ -154,11 +182,17 @@
                         MV
                     </div>
                     <div class="col-md-10 sub-title">
-                        : <select>
+                        : <select name="vessel">
+                            <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->vessel; ?>"><?php echo $row->vessel; ?></option>
+                            <?php } ?>
                            <?php foreach ($vessel as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_vessel'] ?></option>
                         <?php } ?>
-                        </select> - <select>
+                        </select> - <select name="vessel_no">
+                            <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->vessel_no; ?>"><?php echo $row->vessel_no; ?></option>
+                            <?php } ?>
                             <?php foreach ($vesselno as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_vesselno'] ?></option>
                         <?php } ?>
@@ -183,6 +217,9 @@
                     </div>
                     <div class="col-md-10 sub-title">
                         : <select name="eta_city">
+                            <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->eta_city; ?>"><?php echo $row->eta_city; ?></option>
+                            <?php } ?>
                             <?php foreach ($pod as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_pod'] ?></option>
                         <?php } ?>
@@ -211,6 +248,9 @@
                     <div class="col-md-10 sub-title">
                         : <input type="text" value="CY"> /
                             <select name="term">
+                                <?php foreach ($jobsheet as $row) { ?>
+                            <option value="<?php echo $row->term; ?>"><?php echo $row->term; ?></option>
+                            <?php } ?>
                             <<?php foreach ($term as $row) { ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name_term'] ?></option>
                         <?php } ?>
@@ -231,10 +271,12 @@
                     </div>
                 </div>
             <div class="modal-footer">
-                <a type="button" class="btn btn-secondary" href="<?php echo base_url('Admin/users');?>">Close</a>
+                <a type="button" class="btn btn-secondary" href="<?php echo base_url('Jobsheet/index');?>">Close</a>
                 <button type="submit" class="btn btn-primary text-white">Save changes</button>
           </div>
         </form>
+
+                        <?php } ?>
 			</div>
 		</div>
 	</div>

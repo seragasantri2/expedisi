@@ -8,7 +8,7 @@ class Vesselno extends CI_Model
 	
 	public function get_data()
 	{
-		return $this->db->query('select m_vessel_no.id, m_vessel_no.vessel_id, m_vessel_no.name
+		return $this->db->query('select m_vessel_no.id, m_vessel_no.vessel_id, m_vessel_no.name_vesselno
 		 from m_vessel_no INNER JOIN m_vessel ON m_vessel.id = m_vessel_no.vessel_id')->result_array();
 	}
 

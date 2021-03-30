@@ -3,12 +3,12 @@
 /**
  * 
  */
-class Pol extends CI_Model
+class Term extends CI_Model
 {
 	
 	public function get_data()
 	{
-		return $this->db->get('m_pol')->result_array();
+		return $this->db->get('m_term')->result_array();
 	}
 
 	public function input_data($data,$table)
@@ -31,5 +31,5 @@ class Pol extends CI_Model
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
-} 
+}
  ?>

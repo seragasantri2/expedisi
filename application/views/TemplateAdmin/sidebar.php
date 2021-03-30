@@ -11,7 +11,7 @@
                                 <div class="user-pic"><img src="<?php echo base_url() ?>asset/assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
                                     <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <h5 class="m-b-0 user-name font-medium">Steave Jobs <i class="fa fa-angle-down"></i></h5>
+                                        <h5 class="m-b-0 user-name font-medium"><?php echo $this->fungsi->user_login()->nama_depan; ?> <?php echo $this->fungsi->user_login()->nama_belakang; ?><i class="fa fa-angle-down"></i></h5>
                                         <span class="op-5 user-email">varun@gmail.com</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">

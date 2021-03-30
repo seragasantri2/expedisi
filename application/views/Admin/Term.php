@@ -3,7 +3,7 @@
 		<div class="card">
 			<div class="card-body">
                            <!-- Button trigger modal -->
-                            <a type="button" class="btn btn-primary mb-2 text-white" data-toggle="modal" data-target="#carrier">
+                            <a type="button" class="btn btn-primary mb-2 text-white" data-toggle="modal" data-target="#term">
                               <i class="fa fa-plus"></i> Tambah Data
                             </a>
 
@@ -19,14 +19,14 @@
                                         <tbody>
                                         	<?php 
                                         	$no=1;
-                                        	foreach ($carrier as $row) : ?>
+                                        	foreach ($term as $row) : ?>
                                             <tr>
                                             	 
                                                <td><?php echo $no++;?></td>
-                                                <td><?php echo $row['name_carrier'];?></td>
+                                                <td><?php echo $row['name_term'];?></td>
                                                 <td>
-                                                    <a class="btn btn-warning"  href="<?php echo base_url('Admin/edit_carrier/'.$row['id']); ?>"><i class="fa fa-edit"></i></a>
-                                                    <a class="btn btn-danger" href="<?php echo base_url('Admin/delete_carrier/'.$row['id']); ?>"><i class="fa fa-trash"></i></a>
+                                                    <a class="btn btn-warning"  href="<?php echo base_url('Admin/edit_term/'.$row['id']); ?>"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-danger" href="<?php echo base_url('Admin/delete_term/'.$row['id']); ?>"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                           <?php endforeach; ?>
@@ -40,7 +40,7 @@
 </div>
 
 
-<div class="modal fade" id="carrier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="term" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -50,10 +50,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?php echo base_url('Admin/tambah_carrier');?>" method="post">
+        <form action="<?php echo base_url('Admin/tambah_term');?>" method="post">
             <tr class="form-group">
                 <label>Name</label>
-                <input type="text" name="name_carrier" class="form-control">
+                <input type="text" name="name_term" class="form-control">
             </tr>
              <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -55,6 +55,15 @@ class Users_models extends CI_Model
         return $this->db->get('users');
     }
 
+    public function get($id = null) {
+		$this->db->from('tb_users');
+		if($id != null) {
+			$this->db->where('user_id', $id);
+		}
+		$query = $this->db->get();
+		return $query;
+	}
+
 
 	
 }

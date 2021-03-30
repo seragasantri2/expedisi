@@ -15,13 +15,13 @@
                 <?php 
                 $no=1;
                 foreach ($vessel as $roc) : ?>
-                    <option value="<?php echo $roc['id'];?>"><?php echo $no++; ?>. <?php echo $roc['name']; ?></option>
+                    <option value="<?php echo $roc['id'];?>"><?php echo $roc['id']; ?>. <?php echo $roc['name_vessel']; ?></option>
                 <?php endforeach; ?>
                 </select>
             </tr>
             <tr class="form-group">
                 <label>Name</label>
-                <input type="text" name="name" value="<?php echo $row->name;?>" class="form-control">
+                <input type="text" name="name_vesselno" value="<?php echo $row->name_vesselno;?>" class="form-control">
             </tr>
              <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

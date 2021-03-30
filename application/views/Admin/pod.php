@@ -23,7 +23,7 @@
                                             <tr>
                                             	 
                                                <td><?php echo $no++;?></td>
-                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['name_pod'];?></td>
                                                 <td>
                                                     <a class="btn btn-warning"  href="<?php echo base_url('Admin/edit_pod/'.$row['id']); ?>"><i class="fa fa-edit"></i></a>
                                                     <a class="btn btn-danger" href="<?php echo base_url('Admin/delete_pod/'.$row['id']); ?>"><i class="fa fa-trash"></i></a>
@@ -53,7 +53,7 @@
         <form action="<?php echo base_url('Admin/tambah_pod');?>" method="post">
             <tr class="form-group">
                 <label>Name</label>
-                <input type="text" name="name" class="form-control">
+                <input type="text" name="name_pod" class="form-control">
             </tr>
              <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

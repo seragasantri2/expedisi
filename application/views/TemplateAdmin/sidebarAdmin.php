@@ -11,7 +11,7 @@
                                 <div class="user-pic"><img src="<?php echo base_url() ?>asset/assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
                                     <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <h5 class="m-b-0 user-name font-medium">Steave Jobs <i class="fa fa-angle-down"></i></h5>
+                                        <h5 class="m-b-0 user-name font-medium"><?php echo $this->fungsi->user_login()->nama_depan; ?> <?php echo $this->fungsi->user_login()->nama_belakang; ?><i class="fa fa-angle-down"></i></h5>
                                         <span class="op-5 user-email">varun@gmail.com</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
@@ -35,6 +35,11 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('Admin/users'); ?>" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">User Identification IJS</span></a>
                         </li>
 
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('Jobsheet/index'); ?>" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Jobsheet List</span></a>
+                        </li>
+                     
+
+
                          <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Master </span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item"><a href="<?php echo base_url('Admin/customer'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">Customer </span></a></li>
@@ -44,8 +49,14 @@
                                 <li class="sidebar-item"><a href="<?php echo base_url('Admin/volume'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">VOLUME </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('Admin/vessel'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">VESSEL </span></a></li>
                                 <li class="sidebar-item"><a href="<?php echo base_url('Admin/VesselNo'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">VESSEL NO</span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo base_url('Admin/Term'); ?>" class="sidebar-link"><i class="mdi mdi-format-align-left"></i><span class="hide-menu">MASTER Term</span></a></li>
+
+
+                            </ul>
 
                         </li>
+
+                     
                      
 
                        
