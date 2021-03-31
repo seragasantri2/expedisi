@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center sub-title">
                         INV NO : <input type="text" value="TAJL/2021/01/823" readonly> / 
-                        <select class="js-example-basic-multiple" name="customer_no">
+                        <select class="js-example-basic-multiple" name="customer_no" onchange="change_customer(this);">
                            <?php foreach ($customer as $row) { ?>
                             <option value="<?php echo $row['customer_id'] ?>"><?php echo $row['customer_id'] ?></option>
                         <?php } ?>
@@ -24,7 +24,7 @@
                         SHIPPER
                     </div>
                     <div class="col-md-10 sub-title">
-                        : <input type="text" value="PT. MAYORA" readonly> / SI:
+                        : <input type="text" id="customer_name" value="PT. MAYORA" readonly> / SI:
                         <select class="js-example-basic-multiple">
                             <option value="102093482">102093482</option>
                             <option value="102093400">102093400</option>
@@ -252,4 +252,12 @@
             			<option  value="<?php echo $row['email'];?>"><?php echo $row['email'];?></option><?php endforeach;?>')
             		
 	}
+
+    function change_customer(x)
+    {
+        $.get("<?= base_url() ?>/jobsheet/get_customer?customer_id=00001", function(data ) {
+            $('#customer_name').val(data.name_customer);
+        });
+        
+    }
 </script>

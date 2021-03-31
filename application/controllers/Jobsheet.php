@@ -150,6 +150,17 @@ class Jobsheet extends CI_Controller
 	 	redirect('Jobsheet/index');
 	 }
 
+	 public function get_customer()
+	 {
+		$customer_id = $this->input->get('customer_id');
+		$this->db->where(['customer_id' => $customer_id]);
+		$customer = $this->db->get('m_customer')->row();
+
+		//echo $this->db->last_query(); die();
+
+		header('Content-Type: application/json');
+    	echo json_encode( $customer );
+	 }
 }
 
 ?> 
